@@ -11,11 +11,23 @@ class App extends Component {
   state = {
      friends: friends,
      score: 0,
-     topScore: 0
+     topScore: 0,
   }
 
-  updateScore = () => {
-    this.setState({score: this.state.score + 1 })
+
+
+ handleClick = (id) => {
+    this.state.friends.map(item => {
+      if (item.id === id && !item.clicked) {
+        item.clicked = true;
+        this.setState({score: this.state.score + 1})
+      } 
+      return item;
+    })
+    
+    
+    
+    
   }
 
   render() {
@@ -35,7 +47,7 @@ id = {friend.id}
 key = {friend.id}
 image = {friend.image} 
 name={friend.name}
-updateScore={this.updateScore}
+handleClick={this.handleClick}
 />
     )}
 </main>
